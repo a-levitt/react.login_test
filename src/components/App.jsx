@@ -1,23 +1,14 @@
 import React from "react";
-import Login from "./Login";
+import Form from "./Form.jsx";
 
-let isLoggedIn = false;
-
-function renderConditionally() {
-    if (isLoggedIn) {
-        return <h1>Hello</h1>
-    } else {
-        return (
-            <Login />
-        );
-    }
-}
-
+let isRegistered = true;
 
 function App() {
     return (
         <div className="container">
-            {isLoggedIn ? <h1>Hello</h1> : <Login/>}
+           <Form
+               isRegistered={isRegistered}
+           />
         </div>
     );
 }
