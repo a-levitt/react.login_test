@@ -17,7 +17,7 @@ function renderConditionally() {
 function App() {
     return (
         <div className="container">
-            {renderConditionally()}
+            {isLoggedIn ? <h1>Hello</h1> : <Login/>}
         </div>
     );
 }
