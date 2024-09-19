@@ -4,9 +4,15 @@ import Input from './Input';
 function Form(props) {
 
     const [isMousedOver, setIsMouseOver] = React.useState(false);
+    const [name, setName] = React.useState('');
+    const [headingText, setHeadingText] = React.useState('');
+
+    function captureUsername(event) {
+        setName(event.target.value);
+    }
 
     function handleClick() {
-        setMouseClick(true);
+        setHeadingText(name);
     }
 
     function handleMouseOver() {
@@ -19,11 +25,13 @@ function Form(props) {
 
     return (
         <>
-        <h1>"Welcome"</h1>
+        <h1>Welcome {headingText}</h1>
         <form className="form">
-            <Input
+            <input
+                onChange={captureUsername}
                 type="text"
                 placeholder="username"
+                value={name}
             />
             <Input
                 type="password"
@@ -35,7 +43,7 @@ function Form(props) {
             /> }
             <button type="submit" style={{backgroundColor: isMousedOver ? "black" : "white"}}
                     onClick={handleClick} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-                {props.isRegistered ? "Login" : "Register"}
+               {props.isRegistered ? "Login" : "Register"}
             </button>
         </form>
         </>
