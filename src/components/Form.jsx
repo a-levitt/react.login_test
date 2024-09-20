@@ -11,8 +11,9 @@ function Form(props) {
         setName(event.target.value);
     }
 
-    function handleClick() {
+    function handleClick(event) {
         setHeadingText(name);
+        event.preventDefault();
     }
 
     function handleMouseOver() {
@@ -26,7 +27,7 @@ function Form(props) {
     return (
         <>
         <h1>Welcome {headingText}</h1>
-        <form className="form">
+        <form className="form" onSubmit={handleClick}>
             <input
                 onChange={captureUsername}
                 type="text"
@@ -42,7 +43,7 @@ function Form(props) {
                 placeholder="confirm password"
             /> }
             <button type="submit" style={{backgroundColor: isMousedOver ? "black" : "white"}}
-                    onClick={handleClick} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+                    onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
                {props.isRegistered ? "Login" : "Register"}
             </button>
         </form>
