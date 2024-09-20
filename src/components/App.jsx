@@ -1,7 +1,7 @@
 import React from "react";
 import Form from "./Form.jsx";
 
-let isRegistered = false;
+let isRegistered = true;
 
 function App() {
     return (

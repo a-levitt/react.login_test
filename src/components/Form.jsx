@@ -4,17 +4,31 @@ import Input from './Input';
 function Form(props) {
 
     const [isMousedOver, setIsMouseOver] = React.useState(false);
-    const [name, setName] = React.useState('');
-    const [headingText, setHeadingText] = React.useState('');
+    const [userData, setData] = React.useState({
+        username: "",
+        password: ""
 
-    function captureUsername(event) {
-        setName(event.target.value);
+    });
+
+    function captureData(event) {
+        const newValue = event.target.value;
+        const inputData = event.target.name;
+
+        setData(prevValue => {
+            if (inputData === "username") {
+                return {
+                    username: newValue,
+                    password: prevValue.password
+                }
+            } else if (inputData === "password") {
+                return {
+                    username: prevValue.username,
+                    password: newValue
+                }
+            }
+        })
     }
 
-    function handleClick(event) {
-        setHeadingText(name);
-        event.preventDefault();
-    }
 
     function handleMouseOver() {
         setIsMouseOver(true);
@@ -26,17 +40,24 @@ function Form(props) {
 
     return (
         <>
-        <h1>Welcome {headingText}</h1>
-        <form className="form" onSubmit={handleClick}>
+        <h1>Welcome
+            <br/> username: {userData.username}
+            <br/> password: {userData.password}
+        </h1>
+        <form className="form">
             <input
-                onChange={captureUsername}
+                name="username"
+                onChange={captureData}
                 type="text"
                 placeholder="username"
-                value={name}
+                value={userData.username}
             />
-            <Input
+            <input
+                name="password"
+                onChange={captureData}
                 type="password"
                 placeholder="password"
+                value={userData.password}
             />
             {!props.isRegistered && <Input
                 type="password"
