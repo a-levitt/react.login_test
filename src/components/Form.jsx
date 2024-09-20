@@ -15,24 +15,9 @@ function Form(props) {
         const {value, name} = event.target;
 
         setData(prevValue => {
-            if (name === "username") {
-                return {
-                    username: value,
-                    password: prevValue.password,
-                    email: prevValue.email
-                }
-            } else if (name === "password") {
-                return {
-                    username: prevValue.username,
-                    password: value,
-                    email: prevValue.email
-                }
-            } else if (name === "email") {
-                return {
-                    username: prevValue.username,
-                    password: prevValue.password,
-                    email: value
-                }
+            return {
+                ...prevValue,
+                [name]: value
             }
         })
     }
