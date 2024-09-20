@@ -11,19 +11,19 @@ function Form(props) {
     });
 
     function captureData(event) {
-        const newValue = event.target.value;
-        const inputData = event.target.name;
+
+        const {value, name} = event.target;
 
         setData(prevValue => {
-            if (inputData === "username") {
+            if (name === "username") {
                 return {
-                    username: newValue,
+                    username: value,
                     password: prevValue.password
                 }
-            } else if (inputData === "password") {
+            } else if (name === "password") {
                 return {
                     username: prevValue.username,
-                    password: newValue
+                    password: value
                 }
             }
         })
